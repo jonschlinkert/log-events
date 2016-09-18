@@ -10,14 +10,12 @@
 require('mocha');
 var assert = require('assert');
 var capture = require('capture-stream');
-var Base = require('../');
+var Logger = require('../');
 var logger;
 
 describe('log-events', function() {
   beforeEach(function() {
-    var Logger = Base.create();
-    logger = Logger();
-    logger.options = {};
+    logger = new Logger();
   });
 
   it('should have an _emit method', function() {
