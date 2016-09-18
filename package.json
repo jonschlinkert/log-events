@@ -30,7 +30,6 @@
     "is-enabled": "^0.1.0",
     "minimist": "^1.2.0",
     "mocha": "*",
-    "should": "*",
     "strip-color": "^0.1.0"
   },
   "keywords": [
