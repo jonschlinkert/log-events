@@ -1,4 +1,4 @@
-# log-events [![NPM version](https://img.shields.io/npm/v/log-events.svg)](https://www.npmjs.com/package/log-events) [![Build Status](https://img.shields.io/travis/doowb/log-events.svg)](https://travis-ci.org/doowb/log-events)
+# log-events [![NPM version](https://img.shields.io/npm/v/log-events.svg?style=flat)](https://www.npmjs.com/package/log-events) [![NPM downloads](https://img.shields.io/npm/dm/log-events.svg?style=flat)](https://npmjs.org/package/log-events) [![Build Status](https://img.shields.io/travis/doowb/log-events.svg?style=flat)](https://travis-ci.org/doowb/log-events)
 
 > Create custom, chainable logging methods that emit log events when called.
 
@@ -7,12 +7,12 @@
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install log-events --save
+$ npm install --save log-events
 ```
 
 ## Usage
 
-### [Logger](index.js#L25)
+### [Logger](index.js#L23)
 
 Create a new `Logger` constructor to allow
 updating the prototype without affecting other contructors.
@@ -90,7 +90,7 @@ logger.red.write('this is a red message');
 logger.info('this is a cyan message');
 ```
 
-### [.mode](index.js#L175)
+### [.mode](index.js#L173)
 
 Add arbitrary modes to be used for creating namespaces for emitter methods.
 
@@ -98,7 +98,7 @@ Add arbitrary modes to be used for creating namespaces for emitter methods.
 
 * `mode` **{String}**: Mode to add to the logger.
 * `options` **{Object}**: Options to describe the mode.
-* `options.type` **{String|Array}**: Type of mode being created. Defaults to `mode`. Valid values are `['mode', 'toggle']` `toggle` mode may be used to indicate a "flipped" state for another mode. e.g. `not.verbose` `toggle` modes may not be used directly for emitting log events.
+* `options.type` **{String|Array}**: Type of mode being created. Defaults to `mode`. Valid values are `['mode', 'toggle']`. `toggle` mode may be used to indicate a "flipped" state for another mode. e.g. `not.verbose`. `toggle` modes may not be used directly for emitting log events.
 * `fn` **{Function}**: Optional style function that can be used to stylize an emitted message.
 * `returns` **{Object}** `this`: for chaining
 
@@ -126,6 +126,20 @@ logger.not.verbose.info('write a cyan message when verbose is false');
 logger.debug('write a message when debug is true');
 ```
 
+### [.style](index.js#L193)
+
+Create a logger `style` with the given `fn`.
+
+**Params**
+
+* `style` **{String}**: The name of the style to create.
+* `fn` **{Function}**
+* `returns` **{Object}**: Returns the instance for chaining.
+
+**Events**
+
+* `emits`: `style`
+
 ### [Mode](lib/mode.js#L18)
 
 Mode constructor for making a mode object when
@@ -137,7 +151,7 @@ a mode is created with `logger.mode()`
 * `options.name` **{String}**: Required name of the mode
 * `options.type` **{String|Type}**: Type of mode to create. Defaults to `mode`. Values may be `['mode', 'toggle']`.
 
-### [type](lib/mode.js#L43)
+### [type](lib/mode.js#L45)
 
 Type of `mode`. Valid types are ['mode', 'toggle']
 
@@ -150,7 +164,7 @@ console.log(not.type);
 //=> "toggle"
 ```
 
-### [name](lib/mode.js#L69)
+### [name](lib/mode.js#L71)
 
 Readable name of `mode`.
 
@@ -163,7 +177,7 @@ console.log(not.name);
 //=> "not"
 ```
 
-### [](lib/mode.js#L97)`fn`
+### [fn](lib/mode.js#L99)`fn`
 
 Optional modifier function that accepts a value and returns a modified value. When not present, an identity function is used to return the original value.
 
@@ -209,7 +223,7 @@ Stats contructor that contains information about a chained event being built up.
 }
 ```
 
-### [.addMode](lib/stats.js#L80)
+### [.addMode](lib/stats.js#L82)
 
 Add a mode to the `modes` array for this stats object.
 
@@ -225,7 +239,7 @@ var verbose = new Mode({name: 'verbose'});
 stats.addMode(verbose);
 ```
 
-### [.getModes](lib/stats.js#L101)
+### [.getModes](lib/stats.js#L103)
 
 Get the array of modes from the stats object. Optionally, pass a property in and return an array with only the property.
 
@@ -243,7 +257,7 @@ var modeNames = stats.getModes('name');
 //=> ['verbose']
 ```
 
-### [.addStyle](lib/stats.js#L120)
+### [.addStyle](lib/stats.js#L122)
 
 Add a style to the `styles` array for this stats object.
 
@@ -258,7 +272,7 @@ Add a style to the `styles` array for this stats object.
 stats.addStyle('red');
 ```
 
-### [.addEmitter](lib/stats.js#L137)
+### [.addEmitter](lib/stats.js#L139)
 
 Sets the emitter for this stats object to indicate this is a complete stats object ready to be emitted.
 
@@ -274,31 +288,29 @@ var info = new Emitter({name: 'info'});
 stats.addEmitter(info);
 ```
 
-## Related projects
+## About
 
-* [falsey](https://www.npmjs.com/package/falsey): Returns true if `value` is falsey. Works for strings, arrays and `arguments` objects with a… [more](https://www.npmjs.com/package/falsey) | [homepage](https://github.com/jonschlinkert/falsey)
-* [is-enabled](https://www.npmjs.com/package/is-enabled): Using key paths that may contain "falsey" patterns, check if a property on an object… [more](https://www.npmjs.com/package/is-enabled) | [homepage](https://github.com/doowb/is-enabled)
-* [verbalize](https://www.npmjs.com/package/verbalize): A pluggable logging utility with built-in colors, styles, and modes. | [homepage](https://github.com/jonschlinkert/verbalize)
+### Related projects
 
-## Contributing
+* [falsey](https://www.npmjs.com/package/falsey): Returns true if `value` is falsey. Works for strings, arrays and `arguments` objects with a… [more](https://github.com/jonschlinkert/falsey) | [homepage](https://github.com/jonschlinkert/falsey "Returns true if `value` is falsey. Works for strings, arrays and `arguments` objects with a length of `0`, and objects with no own enumerable properties are considered falsey.")
+* [is-enabled](https://www.npmjs.com/package/is-enabled): Using key paths that may contain "falsey" patterns, check if a property on an object… [more](https://github.com/doowb/is-enabled) | [homepage](https://github.com/doowb/is-enabled "Using key paths that may contain "falsey" patterns, check if a property on an object is enabled.")
+* [verbalize](https://www.npmjs.com/package/verbalize): A pluggable logging utility with built-in colors, styles, and modes. | [homepage](https://github.com/jonschlinkert/verbalize "A pluggable logging utility with built-in colors, styles, and modes.")
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/doowb/log-events/issues/new).
+### Contributing
 
-## Building docs
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
-Generate readme and API documentation with [verb][]:
+### Building docs
 
-```sh
-$ npm install verb && npm run docs
-```
+_(This document was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme) (a [verb](https://github.com/verbose/verb) generator), please don't edit the readme directly. Any changes to the readme must be made in [.verb.md](.verb.md).)_
 
-Or, if [verb][] is installed globally:
+To generate the readme and API documentation with [verb](https://github.com/verbose/verb):
 
 ```sh
-$ verb
+$ npm install -g verb verb-generate-readme && verb
 ```
 
-## Running tests
+### Running tests
 
 Install dev dependencies:
 
@@ -306,18 +318,18 @@ Install dev dependencies:
 $ npm install -d && npm test
 ```
 
-## Author
+### Author
 
 **Brian Woodward**
 
 * [github/doowb](https://github.com/doowb)
 * [twitter/doowb](http://twitter.com/doowb)
 
-## License
+### License
 
-Copyright © 2016 [Brian Woodward](https://github.com/doowb)
+Copyright © 2016, [Brian Woodward](https://github.com/doowb).
 Released under the [MIT license](https://github.com/doowb/log-events/blob/master/LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on March 07, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.31, on September 18, 2016._
