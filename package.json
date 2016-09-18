@@ -5,7 +5,9 @@
   "homepage": "https://github.com/doowb/log-events",
   "author": "Brian Woodward (https://github.com/doowb)",
   "repository": "doowb/log-events",
-  "bugs": "https://github.com/doowb/log-events/issues",
+  "bugs": {
+    "url": "https://github.com/doowb/log-events/issues"
+  },
   "license": "MIT",
   "files": [
     "index.js",
@@ -17,6 +19,17 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "component-emitter": "^1.2.0",
+    "define-property": "^0.2.5",
+    "extend-shallow": "^2.0.1",
+    "falsey": "^0.3.0",
+    "get-value": "^2.0.3",
+    "lazy-cache": "^1.0.3",
+    "set-value": "^0.3.3",
+    "union-value": "^0.2.3",
+    "use": "^1.1.2"
   },
   "devDependencies": {
     "ansi-bold": "^0.1.1",
@@ -53,17 +66,6 @@
     "write",
     "writing"
   ],
-  "dependencies": {
-    "component-emitter": "^1.2.0",
-    "define-property": "^0.2.5",
-    "extend-shallow": "^2.0.1",
-    "falsey": "^0.3.0",
-    "get-value": "^2.0.3",
-    "lazy-cache": "^1.0.3",
-    "set-value": "^0.3.3",
-    "union-value": "^0.2.3",
-    "use": "^1.1.2"
-  },
   "verb": {
     "layout": "default",
     "tasks": [
